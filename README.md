@@ -20,12 +20,12 @@ mvc clean install
 3. config in properties
 ```properties
    #reg-center
-   elastic-job.reg-center.server-lists=localhost:2181
-   elastic-job.reg-center.namespace=${spring.application.name}.elastic-job
+   elasticjob.reg-center.server-lists=localhost:2181
+   elasticjob.reg-center.namespace=${spring.application.name}.elastic-job
    #tracing
-   #excalibur.elastic-job.tracing.type=RDB
+   #elasticjob.tracing.type=RDB
    #multiple datasource
-   #excalibur.elastic-job.tracing.data-source-bean-name=db1MasterSlaveRoutingDatasource
+   #elasticjob.tracing.data-source-bean-name=db1MasterSlaveRoutingDatasource
 ```
 4. use annotation
 ```java
@@ -44,7 +44,7 @@ public class SimpleElasticJob implements SimpleJob {
               shardingContext.getShardingParameter(),
               shardingContext.getJobName(),
               shardingContext.getJobParameter()
-      ));
+      );
    }
 }
 ```
@@ -56,7 +56,7 @@ public class SimpleElasticJob implements SimpleJob {
 @ElasticJobScheduler(cron = "0 */1 * * * ?", shardingTotalCount = 4, name = "SimpleElasticJobLevel2",
         shardingItemParameters = "0=0,1=0,2=1,3=1", jobParameters = "parameter")
 @Slf4j
-public class SimpleElasticJob implements SimpleJob {
+public class MultipleElasticJob implements SimpleJob {
 
    @Override
    public void execute(ShardingContext shardingContext) {
@@ -67,7 +67,7 @@ public class SimpleElasticJob implements SimpleJob {
               shardingContext.getShardingParameter(),
               shardingContext.getJobName(),
               shardingContext.getJobParameter()
-      ));
+      );
    }
 }
 ```

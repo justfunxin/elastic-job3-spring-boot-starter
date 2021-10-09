@@ -44,7 +44,16 @@ public class ElasticJobSchedulerAspect implements ApplicationContextAware {
         for (String beanName : beanNamesForAnnotation) {
             Class<?> handlerType = applicationContext.getType(beanName);
             Object bean = applicationContext.getBean(beanName);
-            if (bean instanceof ElasticJob) {
+            if (!(bean instanceof ElasticJob)) {
+                continue;
+            }
+            ElasticJobMultiScheduler multiAnnotation = AnnotationUtils.findAnnotation(handlerType, ElasticJobMultiScheduler.class);
+            if (multiAnnotation != null) {
+                ElasticJobScheduler[] values = multiAnnotation.value();
+                for (int i = 0, valuesLength = values.length; i < valuesLength; i++) {
+                    addJobToContext(values[i], (ElasticJob) bean, beanName + ELASTIC_JOB_NAME + i);
+                }
+            } else {
                 ElasticJobScheduler annotation = AnnotationUtils.findAnnotation(handlerType, ElasticJobScheduler.class);
                 addJobToContext(annotation, (ElasticJob) bean, beanName + ELASTIC_JOB_NAME);
             }
