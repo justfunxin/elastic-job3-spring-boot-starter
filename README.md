@@ -1,6 +1,6 @@
 # elastic-job3-spring-boot-starter
 
-elastic job3 spring boot starter
+elastic job3 spring boot starter, support annotation.
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.kangarooxin/elastic-job3-spring-boot-starter/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.kangarooxin/elastic-job3-spring-boot-starter)
 
