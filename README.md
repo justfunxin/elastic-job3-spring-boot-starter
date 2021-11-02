@@ -1,6 +1,7 @@
 # elastic-job3-spring-boot-starter
 
 elastic job3 spring boot starter
+
 [![Maven Status](https://maven-badges.herokuapp.com/maven-central/io.github.kangarooxin/elastic-job3-spring-boot-starter/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.kangarooxin/elastic-job3-spring-boot-starter)
 
 ## Usage:
