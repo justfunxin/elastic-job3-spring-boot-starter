@@ -4,6 +4,7 @@ import com.github.kangarooxin.spring.boot.starter.elastic.job3.constant.Constant
 import com.github.kangarooxin.spring.boot.starter.elastic.job3.properties.ElasticJobSchedulerProperties;
 import com.github.kangarooxin.spring.boot.starter.elastic.job3.service.ElasticJobService;
 import com.github.kangarooxin.spring.boot.starter.elastic.job3.service.impl.ElasticJobServiceImpl;
+import org.apache.shardingsphere.elasticjob.infra.env.IpUtils;
 import org.apache.shardingsphere.elasticjob.reg.zookeeper.ZookeeperRegistryCenter;
 import org.apache.shardingsphere.elasticjob.tracing.api.TracingConfiguration;
 import org.springframework.beans.BeansException;
@@ -18,6 +19,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
 /**
@@ -36,6 +38,17 @@ public class ElasticJobSchedulerAutoConfiguration implements ApplicationContextA
     private ZookeeperRegistryCenter elasticJobRegCenter;
 
     private ApplicationContext applicationContext;
+
+    @PostConstruct
+    public void init() {
+        ElasticJobSchedulerProperties.Network network = properties.getNetwork();
+        if(StringUtils.hasText(network.getPreferredInterface())) {
+            System.setProperty(IpUtils.PREFERRED_NETWORK_INTERFACE, network.getPreferredInterface());
+        }
+        if(StringUtils.hasText(network.getPreferredIp())) {
+            System.setProperty(IpUtils.PREFERRED_NETWORK_IP, network.getPreferredIp());
+        }
+    }
 
     @Bean
     @ConditionalOnMissingBean

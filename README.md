@@ -14,7 +14,7 @@ mvc clean install
 <dependency>
     <groupId>com.github.kangarooxin</groupId>
     <artifactId>elastic-job3-spring-boot-starter</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 3. config in properties

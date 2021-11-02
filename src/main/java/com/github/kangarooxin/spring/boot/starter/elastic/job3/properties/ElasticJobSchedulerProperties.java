@@ -67,8 +67,34 @@ public class ElasticJobSchedulerProperties {
     private Properties props = new Properties();
 
     /**
+     * configuring network, preferred ip
+     *
+     */
+    @NestedConfigurationProperty
+    private Network network = new Network();
+
+    /**
      *
      */
     @NestedConfigurationProperty
     private TracingConfig tracing = new TracingConfig();
+
+
+    @Data
+    public static class Network {
+        /**
+         * configure preferred interface by regex
+         *
+         * elasticjob.preferred.network.interface
+         */
+        private String preferredInterface;
+
+        /**
+         * configure preferred ip by regex
+         *
+         * elasticjob.preferred.network.ip
+         *
+         */
+        private String preferredIp;
+    }
 }
