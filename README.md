@@ -1,15 +1,10 @@
 # elastic-job3-spring-boot-starter
 
 elastic job3 spring boot starter
+[![Maven Status](https://maven-badges.herokuapp.com/maven-central/io.github.kangarooxin/elastic-job3-spring-boot-starter/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.kangarooxin/elastic-job3-spring-boot-starter)
 
 ## Usage:
-1. build and install jar
-```
-git clone https://github.com/kangarooxin/elastic-job3-spring-boot-starter.git
-cd elastic-job3-spring-boot-starter
-mvc clean install
-```
-2. import dependency in pom.xml
+1. import dependency in pom.xml
 ```
 <dependency>
     <groupId>io.github.kangarooxin</groupId>
@@ -17,7 +12,7 @@ mvc clean install
     <version>1.0.1</version>
 </dependency>
 ```
-3. config in properties
+2. config in properties
 ```properties
    #reg-center
    elasticjob.reg-center.server-lists=localhost:2181
@@ -27,7 +22,7 @@ mvc clean install
    #multiple datasource
    #elasticjob.tracing.data-source-bean-name=db1MasterSlaveRoutingDatasource
 ```
-4. use annotation
+3. use with annotation
 ```java
 @Service
 @ElasticJobScheduler(cron = "0/5 * * * * ?", shardingTotalCount = 4, name = "SimpleElasticJob",
@@ -48,7 +43,7 @@ public class SimpleElasticJob implements SimpleJob {
    }
 }
 ```
-5. multiple job
+4. configure multiple job
 ```java
 @Service
 @ElasticJobScheduler(cron = "0/5 * * * * ?", shardingTotalCount = 4, name = "SimpleElasticJobLevel1",
