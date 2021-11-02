@@ -18,10 +18,6 @@ elastic job3 spring boot starter
    #reg-center
    elasticjob.reg-center.server-lists=localhost:2181
    elasticjob.reg-center.namespace=${spring.application.name}.elastic-job
-   #tracing
-   #elasticjob.tracing.type=RDB
-   #multiple datasource
-   #elasticjob.tracing.data-source-bean-name=db1MasterSlaveRoutingDatasource
 ```
 3. use with annotation
 ```java
@@ -66,4 +62,111 @@ public class MultipleElasticJob implements SimpleJob {
       );
    }
 }
+```
+5. use ElasticJobService add job manually.
+```java
+/**
+ * @author kangaroo_xin
+ */
+public interface ElasticJobService {
+
+    /**
+     * 添加简单作业
+     *
+     * @param elasticJob
+     * @param jobName
+     * @param shardingTotalCount
+     * @param cron
+     */
+    JobBootstrap addJob(ElasticJob elasticJob, String jobName, int shardingTotalCount, String cron);
+
+    /**
+     * 添加简单作业
+     *
+     * @param elasticJob
+     * @param jobName
+     * @param shardingTotalCount
+     * @param cron
+     * @param jobParameter
+     * @param shardingItemParameters
+     */
+    JobBootstrap addJob(ElasticJob elasticJob, String jobName, int shardingTotalCount, String cron, String jobParameter, String... shardingItemParameters);
+
+    /**
+     * 添加简单作业
+     *
+     * @param jobConfiguration
+     * @param jobBootstrapBeanName 非必填
+     * @param elasticJob
+     * @return
+     */
+    JobBootstrap addJob(JobConfiguration jobConfiguration, String jobBootstrapBeanName, ElasticJob elasticJob);
+
+    /**
+     * 添加数据流作业
+     *
+     * @param jobConfiguration
+     * @param jobBootstrapBeanName
+     * @param elasticJob
+     * @param streamingProcess     是否开启流式处理 默认false
+     * @return
+     */
+    <T> JobBootstrap addDataFlowJob(JobConfiguration jobConfiguration, String jobBootstrapBeanName, DataflowJob<T> elasticJob, boolean streamingProcess);
+
+    /**
+     * 添加定时Script调度
+     *
+     * @param jobConfiguration
+     * @param scriptCommendLine
+     */
+    JobBootstrap addScriptJob(JobConfiguration jobConfiguration, String jobBootstrapBeanName, String scriptCommendLine);
+
+    /**
+     * 添加定时Http调度
+     *
+     * @param jobConfiguration
+     * @param httpProp
+     */
+    JobBootstrap addHttpJob(JobConfiguration jobConfiguration, String jobBootstrapBeanName, HttpJobProp httpProp);
+
+}
+```
+6. more config
+```
+#config strategy, more strategy refer to official document
+#cofig error handler type.  LOG,THROW,IGNORE,EMAIL,WECHAT,DINGTALK
+elasticjob.job-error-handler-type=LOG
+#config sharding strategy type. AVG_ALLOCATION,ODEVITY,ROUND_ROBIN
+elasticjob.job-sharding-strategy-type=AVG_ALLOCATION
+elasticjob.job-executor-service-handler-type=CPU
+
+#tracing
+#elasticjob.tracing.type=RDB
+#multiple datasource
+#elasticjob.tracing.data-source-bean-name=db1MasterSlaveRoutingDatasource
+
+#config email notify
+elasticjob.props.email.host=host
+elasticjob.props.email.port=465
+elasticjob.props.email.username=username
+elasticjob.props.email.password=password
+elasticjob.props.email.useSsl=true
+elasticjob.props.email.subject=ElasticJob error message
+elasticjob.props.email.from=from@xxx.xx
+elasticjob.props.email.to=to1@xxx.xx,to2@xxx.xx
+elasticjob.props.email.cc=cc@xxx.xx
+elasticjob.props.email.bcc=bcc@xxx.xx
+elasticjob.props.email.debug=false
+
+#config wechat notify
+elasticjob.props.wechat.webhook=you_webhook
+elasticjob.props.wechat.connectTimeout=3000
+elasticjob.props.wechat.readTimeout=5000
+
+#config dingtalk notify
+elasticjob.props.dingtalk.webhook=you_webhook
+elasticjob.props.dingtalk.keyword=you_keyword
+elasticjob.props.dingtalk.secret=you_secret
+elasticjob.props.dingtalk.connectTimeout=3000
+elasticjob.props.dingtalk.readTimeout=5000
 ```
