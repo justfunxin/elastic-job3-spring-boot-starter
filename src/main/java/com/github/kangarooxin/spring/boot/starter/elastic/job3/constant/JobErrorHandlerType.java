@@ -36,11 +36,7 @@ public enum JobErrorHandlerType {
      * 邮件通知策略
      * 发送邮件消息通知，但不中断作业执行
      *
-     * <dependency>
-     *     <groupId>org.apache.shardingsphere.elasticjob</groupId>
-     *     <artifactId>elasticjob-error-handler-email</artifactId>
-     *     <version>${latest.release.version}</version>
-     * </dependency>
+     * elasticjob-error-handler-email
      *
      * 属性名	        说明	            是否必填	默认值
      * email.host	    邮件服务器地址	    是	    -
@@ -61,11 +57,7 @@ public enum JobErrorHandlerType {
      * 企业微信通知策略
      * 发送企业微信消息通知，但不中断作业执行
      *
-     * <dependency>
-     *     <groupId>org.apache.shardingsphere.elasticjob</groupId>
-     *     <artifactId>elasticjob-error-handler-wechat</artifactId>
-     *     <version>${latest.release.version}</version>
-     * </dependency>
+     * elasticjob-error-handler-wechat
      *
      * 属性名	                            说明	                            是否必填	默认值
      * wechat.webhook	                    企业微信机器人的 webhook 地址	        是	    -
@@ -78,11 +70,7 @@ public enum JobErrorHandlerType {
      * 钉钉通知策略
      * 发送钉钉消息通知，但不中断作业执行
      *
-     * <dependency>
-     *     <groupId>org.apache.shardingsphere.elasticjob</groupId>
-     *     <artifactId>elasticjob-error-handler-dingtalk</artifactId>
-     *     <version>${latest.release.version}</version>
-     * </dependency>
+     * elasticjob-error-handler-dingtalk
      *
      * 属性名	                            说明	                                是否必填	默认值
      * dingtalk.webhook	                    钉钉机器人的 webhook 地址	                是	    -

@@ -12,7 +12,7 @@ mvc clean install
 2. import dependency in pom.xml
 ```
 <dependency>
-    <groupId>com.github.kangarooxin</groupId>
+    <groupId>io.github.kangarooxin</groupId>
     <artifactId>elastic-job3-spring-boot-starter</artifactId>
     <version>1.0.1</version>
 </dependency>
