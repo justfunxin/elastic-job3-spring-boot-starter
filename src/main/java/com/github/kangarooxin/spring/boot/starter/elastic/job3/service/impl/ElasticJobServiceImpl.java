@@ -8,9 +8,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.shardingsphere.elasticjob.api.ElasticJob;
 import org.apache.shardingsphere.elasticjob.api.JobConfiguration;
 import org.apache.shardingsphere.elasticjob.dataflow.job.DataflowJob;
+import org.apache.shardingsphere.elasticjob.infra.pojo.JobConfigurationPOJO;
 import org.apache.shardingsphere.elasticjob.lite.api.bootstrap.JobBootstrap;
 import org.apache.shardingsphere.elasticjob.lite.api.bootstrap.impl.OneOffJobBootstrap;
 import org.apache.shardingsphere.elasticjob.lite.api.bootstrap.impl.ScheduleJobBootstrap;
+import org.apache.shardingsphere.elasticjob.lite.lifecycle.api.JobConfigurationAPI;
+import org.apache.shardingsphere.elasticjob.lite.lifecycle.api.JobOperateAPI;
+import org.apache.shardingsphere.elasticjob.lite.lifecycle.api.JobStatisticsAPI;
+import org.apache.shardingsphere.elasticjob.lite.lifecycle.domain.JobBriefInfo;
 import org.apache.shardingsphere.elasticjob.reg.base.CoordinatorRegistryCenter;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
@@ -19,6 +24,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.util.StringUtils;
 
+import java.util.Collection;
 import java.util.Properties;
 
 /**
@@ -35,9 +41,22 @@ public class ElasticJobServiceImpl implements ElasticJobService, ApplicationCont
 
     private DefaultListableBeanFactory beanFactory;
 
-    public ElasticJobServiceImpl(CoordinatorRegistryCenter elasticJobRegCenter, ElasticJobSchedulerProperties properties) {
+    private JobConfigurationAPI jobConfigurationAPI;
+
+    private JobOperateAPI jobOperateAPI;
+
+    private JobStatisticsAPI jobStatisticsAPI;
+
+    public ElasticJobServiceImpl(CoordinatorRegistryCenter elasticJobRegCenter,
+                                 ElasticJobSchedulerProperties properties,
+                                 JobConfigurationAPI jobConfigurationAPI,
+                                 JobOperateAPI jobOperateAPI,
+                                 JobStatisticsAPI jobStatisticsAPI) {
         this.properties = properties;
         this.elasticJobRegCenter = elasticJobRegCenter;
+        this.jobConfigurationAPI = jobConfigurationAPI;
+        this.jobOperateAPI = jobOperateAPI;
+        this.jobStatisticsAPI = jobStatisticsAPI;
     }
 
     @Override
@@ -150,6 +169,57 @@ public class ElasticJobServiceImpl implements ElasticJobService, ApplicationCont
             beanFactory.registerSingleton(jobBootstrapBeanName, jobBootstrap);
             return jobBootstrap;
         }
+    }
+
+    @Override
+    public void removeJob(String jobName) {
+        removeJob(jobName, null);
+    }
+
+    @Override
+    public void removeJob(String jobName, String jobBootstrapBeanName) {
+        removeJobConfiguration(jobName);
+        if (StringUtils.isEmpty(jobBootstrapBeanName)) {
+            jobBootstrapBeanName = jobName + JOB_BOOTSTRAP_BEAN_NAME;
+        }
+        beanFactory.destroySingleton(jobBootstrapBeanName);
+    }
+
+
+    @Override
+    public JobConfigurationPOJO getJobConfiguration(String jobName) {
+        return jobConfigurationAPI.getJobConfiguration(jobName);
+    }
+
+    @Override
+    public void updateJobConfiguration(JobConfigurationPOJO jobConfig) {
+        jobConfigurationAPI.updateJobConfiguration(jobConfig);
+    }
+
+    @Override
+    public void removeJobConfiguration(String jobName) {
+        jobOperateAPI.shutdown(jobName, null);
+        jobConfigurationAPI.removeJobConfiguration(jobName);
+    }
+
+    @Override
+    public void trigger(String jobName) {
+        jobOperateAPI.trigger(jobName);
+    }
+
+    @Override
+    public int getJobsTotalCount() {
+        return jobStatisticsAPI.getJobsTotalCount();
+    }
+
+    @Override
+    public Collection<JobBriefInfo> getAllJobsBriefInfo() {
+        return jobStatisticsAPI.getAllJobsBriefInfo();
+    }
+
+    @Override
+    public JobBriefInfo getJobBriefInfo(String jobName) {
+        return jobStatisticsAPI.getJobBriefInfo(jobName);
     }
 
     private JobConfiguration buildJobConfiguration(JobConfiguration jobConfiguration) {

@@ -4,7 +4,11 @@ import com.github.kangarooxin.spring.boot.starter.elastic.job3.model.HttpJobProp
 import org.apache.shardingsphere.elasticjob.api.ElasticJob;
 import org.apache.shardingsphere.elasticjob.api.JobConfiguration;
 import org.apache.shardingsphere.elasticjob.dataflow.job.DataflowJob;
+import org.apache.shardingsphere.elasticjob.infra.pojo.JobConfigurationPOJO;
 import org.apache.shardingsphere.elasticjob.lite.api.bootstrap.JobBootstrap;
+import org.apache.shardingsphere.elasticjob.lite.lifecycle.domain.JobBriefInfo;
+
+import java.util.Collection;
 
 /**
  * @author kangaroo_xin
@@ -70,4 +74,71 @@ public interface ElasticJobService {
      */
     JobBootstrap addHttpJob(JobConfiguration jobConfiguration, String jobBootstrapBeanName, HttpJobProp httpProp);
 
+    /**
+     * remove job
+     *
+     * @param jobName
+     */
+    void removeJob(String jobName);
+
+    /**
+     * remove job
+     *
+     * @param jobName
+     * @param jobBootstrapBeanName
+     */
+    void removeJob(String jobName, String jobBootstrapBeanName);
+
+    /**
+     * get job configuration.
+     *
+     * @param jobName job name
+     * @return job configuration
+     */
+    JobConfigurationPOJO getJobConfiguration(String jobName);
+
+    /**
+     * Update job configuration.
+     *
+     * @param jobConfig job configuration
+     */
+    void updateJobConfiguration(JobConfigurationPOJO jobConfig);
+
+    /**
+     * Remove job configuration.
+     *
+     * @param jobName job name
+     */
+    void removeJobConfiguration(String jobName);
+
+    /**
+     * Trigger job to run at once.
+     *
+     * <p>Job will not start until it does not conflict with the last running job, and this tag will be automatically cleaned up after it starts.</p>
+     *
+     * @param jobName job name
+     */
+    void trigger(String jobName);
+
+    /**
+     * Get jobs total count.
+     *
+     * @return jobs total count.
+     */
+    int getJobsTotalCount();
+
+    /**
+     * Get all jobs brief info.
+     *
+     * @return all jobs brief info.
+     */
+    Collection<JobBriefInfo> getAllJobsBriefInfo();
+
+    /**
+     * Get job brief info.
+     *
+     * @param jobName job name
+     * @return job brief info
+     */
+    JobBriefInfo getJobBriefInfo(String jobName);
 }

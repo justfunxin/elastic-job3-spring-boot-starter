@@ -65,9 +65,6 @@ public class MultipleElasticJob implements SimpleJob {
 ```
 5. use ElasticJobService add job manually.
 ```java
-/**
- * @author kangaroo_xin
- */
 public interface ElasticJobService {
 
     /**
@@ -129,6 +126,73 @@ public interface ElasticJobService {
      */
     JobBootstrap addHttpJob(JobConfiguration jobConfiguration, String jobBootstrapBeanName, HttpJobProp httpProp);
 
+    /**
+     * 移除job
+     *
+     * @param jobName
+     */
+    void removeJob(String jobName);
+
+    /**
+     * 移除job
+     *
+     * @param jobName
+     * @param jobBootstrapBeanName
+     */
+    void removeJob(String jobName, String jobBootstrapBeanName);
+
+    /**
+     * get job configuration.
+     *
+     * @param jobName job name
+     * @return job configuration
+     */
+    JobConfigurationPOJO getJobConfiguration(String jobName);
+
+    /**
+     * Update job configuration.
+     *
+     * @param jobConfig job configuration
+     */
+    void updateJobConfiguration(JobConfigurationPOJO jobConfig);
+
+    /**
+     * Remove job configuration.
+     *
+     * @param jobName job name
+     */
+    void removeJobConfiguration(String jobName);
+
+    /**
+     * Trigger job to run at once.
+     *
+     * <p>Job will not start until it does not conflict with the last running job, and this tag will be automatically cleaned up after it starts.</p>
+     *
+     * @param jobName job name
+     */
+    void trigger(String jobName);
+
+    /**
+     * Get jobs total count.
+     *
+     * @return jobs total count.
+     */
+    int getJobsTotalCount();
+
+    /**
+     * Get all jobs brief info.
+     *
+     * @return all jobs brief info.
+     */
+    Collection<JobBriefInfo> getAllJobsBriefInfo();
+
+    /**
+     * Get job brief info.
+     *
+     * @param jobName job name
+     * @return job brief info
+     */
+    JobBriefInfo getJobBriefInfo(String jobName);
 }
 ```
 6. more config

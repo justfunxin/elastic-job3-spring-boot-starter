@@ -5,6 +5,13 @@ import com.github.kangarooxin.spring.boot.starter.elastic.job3.properties.Elasti
 import com.github.kangarooxin.spring.boot.starter.elastic.job3.service.ElasticJobService;
 import com.github.kangarooxin.spring.boot.starter.elastic.job3.service.impl.ElasticJobServiceImpl;
 import org.apache.shardingsphere.elasticjob.infra.env.IpUtils;
+import org.apache.shardingsphere.elasticjob.lite.lifecycle.api.*;
+import org.apache.shardingsphere.elasticjob.lite.lifecycle.internal.operate.JobOperateAPIImpl;
+import org.apache.shardingsphere.elasticjob.lite.lifecycle.internal.operate.ShardingOperateAPIImpl;
+import org.apache.shardingsphere.elasticjob.lite.lifecycle.internal.settings.JobConfigurationAPIImpl;
+import org.apache.shardingsphere.elasticjob.lite.lifecycle.internal.statistics.JobStatisticsAPIImpl;
+import org.apache.shardingsphere.elasticjob.lite.lifecycle.internal.statistics.ServerStatisticsAPIImpl;
+import org.apache.shardingsphere.elasticjob.lite.lifecycle.internal.statistics.ShardingStatisticsAPIImpl;
 import org.apache.shardingsphere.elasticjob.reg.zookeeper.ZookeeperRegistryCenter;
 import org.apache.shardingsphere.elasticjob.tracing.api.TracingConfiguration;
 import org.springframework.beans.BeansException;
@@ -53,7 +60,7 @@ public class ElasticJobSchedulerAutoConfiguration implements ApplicationContextA
     @Bean
     @ConditionalOnMissingBean
     public ElasticJobService elasticJobService() {
-        return new ElasticJobServiceImpl(elasticJobRegCenter, properties);
+        return new ElasticJobServiceImpl(elasticJobRegCenter, properties, jobConfigurationAPI(), jobOperateAPI(), jobStatisticsAPI());
     }
 
     @Bean
@@ -68,6 +75,42 @@ public class ElasticJobSchedulerAutoConfiguration implements ApplicationContextA
             dataSource = applicationContext.getBean(DataSource.class);
         }
         return new TracingConfiguration<>("RDB", dataSource);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public JobConfigurationAPI jobConfigurationAPI() {
+        return new JobConfigurationAPIImpl(elasticJobRegCenter);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public JobOperateAPI jobOperateAPI() {
+        return new JobOperateAPIImpl(elasticJobRegCenter);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public JobStatisticsAPI jobStatisticsAPI() {
+        return new JobStatisticsAPIImpl(elasticJobRegCenter);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public ServerStatisticsAPI serverStatisticsAPI() {
+        return new ServerStatisticsAPIImpl(elasticJobRegCenter);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public ShardingOperateAPI shardingOperateAPI() {
+        return new ShardingOperateAPIImpl(elasticJobRegCenter);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public ShardingStatisticsAPI shardingStatisticsAPI() {
+        return new ShardingStatisticsAPIImpl(elasticJobRegCenter);
     }
 
     @Override
