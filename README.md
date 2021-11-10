@@ -10,7 +10,7 @@ extend offical elasticjob-lite-spring-boot-starter, support configure job with a
 <dependency>
     <groupId>io.github.kangarooxin</groupId>
     <artifactId>elastic-job3-spring-boot-starter</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 </dependency>
 ```
 2. config in properties
