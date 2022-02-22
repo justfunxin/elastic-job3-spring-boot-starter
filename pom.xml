@@ -6,7 +6,7 @@
 
     <groupId>io.github.kangarooxin</groupId>
     <artifactId>elastic-job3-spring-boot-starter</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <packaging>jar</packaging>
     <name>elastic-job3-spring-boot-starter</name>
     <description>spring boot starter for elastic-job3</description>

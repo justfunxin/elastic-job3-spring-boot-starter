@@ -3,6 +3,7 @@ package com.github.kangarooxin.spring.boot.starter.elastic.job3;
 import com.github.kangarooxin.spring.boot.starter.elastic.job3.annotation.ElasticJobMultiScheduler;
 import com.github.kangarooxin.spring.boot.starter.elastic.job3.annotation.ElasticJobScheduler;
 import com.github.kangarooxin.spring.boot.starter.elastic.job3.model.HttpJobProp;
+import com.github.kangarooxin.spring.boot.starter.elastic.job3.properties.ElasticJobSchedulerProperties;
 import com.github.kangarooxin.spring.boot.starter.elastic.job3.service.ElasticJobService;
 import org.apache.shardingsphere.elasticjob.api.ElasticJob;
 import org.apache.shardingsphere.elasticjob.api.JobConfiguration;
@@ -29,6 +30,9 @@ public class ElasticJobSchedulerAspect implements ApplicationContextAware {
 
     @Autowired
     private ElasticJobService elasticJobService;
+
+    @Autowired
+    private ElasticJobSchedulerProperties elasticJobSchedulerProperties;
 
     /**
      * 解析context信息，开始注册
@@ -89,8 +93,12 @@ public class ElasticJobSchedulerAspect implements ApplicationContextAware {
         if (StringUtils.hasText(elasticScheduler.name())) {
             jobName = elasticScheduler.name();
         }
+        String cron = elasticScheduler.cron();
+        if (StringUtils.isEmpty(cron)) {
+            cron = elasticJobSchedulerProperties.getCrons().get(jobName);
+        }
         JobConfiguration jobConfiguration = JobConfiguration.newBuilder(jobName, elasticScheduler.shardingTotalCount())
-                .cron(elasticScheduler.cron())
+                .cron(cron)
                 .shardingItemParameters(elasticScheduler.shardingItemParameters())
                 .jobParameter(elasticScheduler.jobParameters())
                 .monitorExecution(elasticScheduler.monitorExecution())

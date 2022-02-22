@@ -10,7 +10,7 @@ extend offical elasticjob-lite-spring-boot-starter, support configure job with a
 <dependency>
     <groupId>io.github.kangarooxin</groupId>
     <artifactId>elastic-job3-spring-boot-starter</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
 </dependency>
 ```
 2. config in properties
@@ -63,7 +63,11 @@ public class MultipleElasticJob implements SimpleJob {
    }
 }
 ```
-5. use ElasticJobService add job manually.
+5. if not config cron in annotation, corn can config in properties.
+```properties
+elasticjob.crons.SimpleElasticJob=0/5 * * * * ?
+```
+6. use ElasticJobService add job manually.
 ```java
 public interface ElasticJobService {
 

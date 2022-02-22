@@ -36,7 +36,8 @@ public @interface ElasticJobScheduler {
     /**
      * cron表达式，用于控制作业触发时间
      * <p>
-     * 如果未设置，会生成一次性调度
+     * 如果未设置，会取配置中根据jobName设置的cron
+     * 如果都未设置，会生成一次性调度
      *
      * @return
      */
