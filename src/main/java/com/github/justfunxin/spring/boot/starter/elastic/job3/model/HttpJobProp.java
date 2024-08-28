@@ -1,4 +1,4 @@
-package com.github.kangarooxin.spring.boot.starter.elastic.job3.model;
+package com.github.justfunxin.spring.boot.starter.elastic.job3.model;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

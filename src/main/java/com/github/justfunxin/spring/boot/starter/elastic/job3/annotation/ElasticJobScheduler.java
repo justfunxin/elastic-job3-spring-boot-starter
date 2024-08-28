@@ -1,9 +1,9 @@
-package com.github.kangarooxin.spring.boot.starter.elastic.job3.annotation;
+package com.github.justfunxin.spring.boot.starter.elastic.job3.annotation;
 
-import com.github.kangarooxin.spring.boot.starter.elastic.job3.constant.JobErrorHandlerType;
-import com.github.kangarooxin.spring.boot.starter.elastic.job3.constant.JobExecutorServiceHandlerType;
-import com.github.kangarooxin.spring.boot.starter.elastic.job3.constant.JobShardingStrategyType;
-import com.github.kangarooxin.spring.boot.starter.elastic.job3.constant.JobType;
+import com.github.justfunxin.spring.boot.starter.elastic.job3.constant.JobErrorHandlerType;
+import com.github.justfunxin.spring.boot.starter.elastic.job3.constant.JobExecutorServiceHandlerType;
+import com.github.justfunxin.spring.boot.starter.elastic.job3.constant.JobShardingStrategyType;
+import com.github.justfunxin.spring.boot.starter.elastic.job3.constant.JobType;
 
 import java.lang.annotation.*;
 

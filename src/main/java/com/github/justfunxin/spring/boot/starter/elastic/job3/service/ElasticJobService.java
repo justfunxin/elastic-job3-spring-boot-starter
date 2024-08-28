@@ -1,6 +1,6 @@
-package com.github.kangarooxin.spring.boot.starter.elastic.job3.service;
+package com.github.justfunxin.spring.boot.starter.elastic.job3.service;
 
-import com.github.kangarooxin.spring.boot.starter.elastic.job3.model.HttpJobProp;
+import com.github.justfunxin.spring.boot.starter.elastic.job3.model.HttpJobProp;
 import org.apache.shardingsphere.elasticjob.api.ElasticJob;
 import org.apache.shardingsphere.elasticjob.api.JobConfiguration;
 import org.apache.shardingsphere.elasticjob.dataflow.job.DataflowJob;

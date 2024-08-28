@@ -1,9 +1,9 @@
-package com.github.kangarooxin.spring.boot.starter.elastic.job3.properties;
+package com.github.justfunxin.spring.boot.starter.elastic.job3.properties;
 
-import com.github.kangarooxin.spring.boot.starter.elastic.job3.constant.Constants;
-import com.github.kangarooxin.spring.boot.starter.elastic.job3.constant.JobErrorHandlerType;
-import com.github.kangarooxin.spring.boot.starter.elastic.job3.constant.JobExecutorServiceHandlerType;
-import com.github.kangarooxin.spring.boot.starter.elastic.job3.constant.JobShardingStrategyType;
+import com.github.justfunxin.spring.boot.starter.elastic.job3.constant.Constants;
+import com.github.justfunxin.spring.boot.starter.elastic.job3.constant.JobErrorHandlerType;
+import com.github.justfunxin.spring.boot.starter.elastic.job3.constant.JobExecutorServiceHandlerType;
+import com.github.justfunxin.spring.boot.starter.elastic.job3.constant.JobShardingStrategyType;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;

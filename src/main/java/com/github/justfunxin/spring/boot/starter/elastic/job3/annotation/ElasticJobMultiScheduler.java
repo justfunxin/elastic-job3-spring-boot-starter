@@ -1,4 +1,4 @@
-package com.github.kangarooxin.spring.boot.starter.elastic.job3.annotation;
+package com.github.justfunxin.spring.boot.starter.elastic.job3.annotation;
 
 import java.lang.annotation.*;
 

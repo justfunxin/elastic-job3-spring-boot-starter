@@ -1,4 +1,4 @@
-package com.github.kangarooxin.spring.boot.starter.elastic.job3.properties;
+package com.github.justfunxin.spring.boot.starter.elastic.job3.properties;
 
 import lombok.Data;
 

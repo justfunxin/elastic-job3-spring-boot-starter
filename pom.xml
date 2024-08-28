@@ -4,19 +4,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.github.kangarooxin</groupId>
-    <artifactId>elastic-job3-spring-boot-starter</artifactId>
+    <groupId>io.github.justfunxin</groupId>
+    <artifactId>elastic-job3-spring-boot3-starter</artifactId>
     <version>1.0.3</version>
     <packaging>jar</packaging>
     <name>elastic-job3-spring-boot-starter</name>
     <description>spring boot starter for elastic-job3</description>
-    <url>https://github.com/kangarooxin/elastic-job3-spring-boot-starter</url>
+    <url>https://github.com/justfunxin/elastic-job3-spring-boot-starter</url>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <spring-boot.version>2.7.3</spring-boot.version>
+        <spring-boot.version>3.3.3</spring-boot.version>
 
         <elasticjob.version>3.0.1</elasticjob.version>
         <curator.version>5.1.0</curator.version>
@@ -166,32 +166,20 @@
                             </execution>
                         </executions>
                     </plugin>
-
                     <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>1.6.7</version>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>0.5.0</version>
                         <extensions>true</extensions>
                         <configuration>
-                            <serverId>ossrh</serverId>
-                            <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                            <publishingServerId>central-sonatype</publishingServerId>
+                            <autoPublish>true</autoPublish>
                         </configuration>
                     </plugin>
                 </plugins>
             </build>
         </profile>
     </profiles>
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
     <licenses>
         <license>
             <name>MIT License</name>
@@ -201,19 +189,19 @@
     </licenses>
     <developers>
         <developer>
-            <email>33863251@qq.com</email>
+            <email>pangxin001@163.com</email>
             <name>xin.pang</name>
-            <url>https://github.com/kangarooxin</url>
-            <id>kangarooxin</id>
+            <url>https://github.com/justfunxin</url>
+            <id>justfunxin</id>
         </developer>
     </developers>
     <issueManagement>
         <system>Github Issue</system>
-        <url>https://github.com/kangarooxin/elastic-job3-spring-boot-starter/issues</url>
+        <url>https://github.com/justfunxin/elastic-job3-spring-boot-starter/issues</url>
     </issueManagement>
     <scm>
-        <connection>scm:git@github.com:kangarooxin/elastic-job3-spring-boot-starter.git</connection>
-        <developerConnection>scm:git@github.com:kangarooxin/elastic-job3-spring-boot-starter.git</developerConnection>
-        <url>git@github.com:kangarooxin/elastic-job3-spring-boot-starter.git</url>
+        <connection>scm:git@github.com:justfunxin/elastic-job3-spring-boot-starter.git</connection>
+        <developerConnection>scm:git@github.com:justfunxin/elastic-job3-spring-boot-starter.git</developerConnection>
+        <url>git@github.com:justfunxin/elastic-job3-spring-boot-starter.git</url>
     </scm>
 </project>

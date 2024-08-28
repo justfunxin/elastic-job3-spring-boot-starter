@@ -1,9 +1,9 @@
-package com.github.kangarooxin.spring.boot.starter.elastic.job3.service.impl;
+package com.github.justfunxin.spring.boot.starter.elastic.job3.service.impl;
 
-import com.github.kangarooxin.spring.boot.starter.elastic.job3.constant.JobType;
-import com.github.kangarooxin.spring.boot.starter.elastic.job3.model.HttpJobProp;
-import com.github.kangarooxin.spring.boot.starter.elastic.job3.properties.ElasticJobSchedulerProperties;
-import com.github.kangarooxin.spring.boot.starter.elastic.job3.service.ElasticJobService;
+import com.github.justfunxin.spring.boot.starter.elastic.job3.constant.JobType;
+import com.github.justfunxin.spring.boot.starter.elastic.job3.model.HttpJobProp;
+import com.github.justfunxin.spring.boot.starter.elastic.job3.properties.ElasticJobSchedulerProperties;
+import com.github.justfunxin.spring.boot.starter.elastic.job3.service.ElasticJobService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shardingsphere.elasticjob.api.ElasticJob;
 import org.apache.shardingsphere.elasticjob.api.JobConfiguration;

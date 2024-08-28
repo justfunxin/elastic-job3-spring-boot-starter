@@ -1,2 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.github.kangarooxin.spring.boot.starter.elastic.job3.ElasticJobSchedulerAutoConfiguration

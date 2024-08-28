@@ -1,9 +1,10 @@
-package com.github.kangarooxin.spring.boot.starter.elastic.job3;
+package com.github.justfunxin.spring.boot.starter.elastic.job3;
 
-import com.github.kangarooxin.spring.boot.starter.elastic.job3.constant.Constants;
-import com.github.kangarooxin.spring.boot.starter.elastic.job3.properties.ElasticJobSchedulerProperties;
-import com.github.kangarooxin.spring.boot.starter.elastic.job3.service.ElasticJobService;
-import com.github.kangarooxin.spring.boot.starter.elastic.job3.service.impl.ElasticJobServiceImpl;
+import com.github.justfunxin.spring.boot.starter.elastic.job3.constant.Constants;
+import com.github.justfunxin.spring.boot.starter.elastic.job3.properties.ElasticJobSchedulerProperties;
+import com.github.justfunxin.spring.boot.starter.elastic.job3.service.ElasticJobService;
+import com.github.justfunxin.spring.boot.starter.elastic.job3.service.impl.ElasticJobServiceImpl;
+import jakarta.annotation.PostConstruct;
 import org.apache.shardingsphere.elasticjob.infra.env.IpUtils;
 import org.apache.shardingsphere.elasticjob.lite.lifecycle.api.*;
 import org.apache.shardingsphere.elasticjob.lite.lifecycle.internal.operate.JobOperateAPIImpl;
@@ -26,7 +27,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.util.StringUtils;
 
-import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
 /**

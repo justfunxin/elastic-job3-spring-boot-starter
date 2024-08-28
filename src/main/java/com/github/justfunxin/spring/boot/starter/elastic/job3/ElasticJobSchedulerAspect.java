@@ -1,10 +1,11 @@
-package com.github.kangarooxin.spring.boot.starter.elastic.job3;
+package com.github.justfunxin.spring.boot.starter.elastic.job3;
 
-import com.github.kangarooxin.spring.boot.starter.elastic.job3.annotation.ElasticJobMultiScheduler;
-import com.github.kangarooxin.spring.boot.starter.elastic.job3.annotation.ElasticJobScheduler;
-import com.github.kangarooxin.spring.boot.starter.elastic.job3.model.HttpJobProp;
-import com.github.kangarooxin.spring.boot.starter.elastic.job3.properties.ElasticJobSchedulerProperties;
-import com.github.kangarooxin.spring.boot.starter.elastic.job3.service.ElasticJobService;
+import com.github.justfunxin.spring.boot.starter.elastic.job3.annotation.ElasticJobMultiScheduler;
+import com.github.justfunxin.spring.boot.starter.elastic.job3.annotation.ElasticJobScheduler;
+import com.github.justfunxin.spring.boot.starter.elastic.job3.model.HttpJobProp;
+import com.github.justfunxin.spring.boot.starter.elastic.job3.properties.ElasticJobSchedulerProperties;
+import com.github.justfunxin.spring.boot.starter.elastic.job3.service.ElasticJobService;
+import jakarta.annotation.PostConstruct;
 import org.apache.shardingsphere.elasticjob.api.ElasticJob;
 import org.apache.shardingsphere.elasticjob.api.JobConfiguration;
 import org.apache.shardingsphere.elasticjob.dataflow.job.DataflowJob;
@@ -16,7 +17,6 @@ import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import javax.annotation.PostConstruct;
 
 /**
  * @author kangaroo_xin

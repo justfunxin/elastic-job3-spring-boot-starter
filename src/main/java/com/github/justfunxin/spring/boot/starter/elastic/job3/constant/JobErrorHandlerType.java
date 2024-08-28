@@ -1,4 +1,4 @@
-package com.github.kangarooxin.spring.boot.starter.elastic.job3.constant;
+package com.github.justfunxin.spring.boot.starter.elastic.job3.constant;
 
 /**
  * 错误处理策略
