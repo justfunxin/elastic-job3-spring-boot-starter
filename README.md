@@ -2,7 +2,7 @@
 
 extend offical elasticjob-lite-spring-boot-starter, support configure job with annotation.
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.justfunxin/elastic-job3-spring-boot-starter/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.justfunxin/elastic-job3-spring-boot-starter)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.justfunxin/elastic-job3-spring-boot3-starter/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.justfunxin/elastic-job3-spring-boot3-starter)
 
 ## Usage:
 1. import dependency in pom.xml
