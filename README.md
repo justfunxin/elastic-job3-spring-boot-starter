@@ -10,7 +10,7 @@ extend offical elasticjob-lite-spring-boot-starter, support configure job with a
 <dependency>
     <groupId>io.github.justfunxin</groupId>
     <artifactId>elastic-job3-spring-boot3-starter</artifactId>
-    <version>1.0.3</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 2. config in properties
